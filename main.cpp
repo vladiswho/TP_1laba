@@ -1,4 +1,8 @@
 #include <iostream>
+#include "keeper.h"
+#include "percussion.h"
+
+using namespace std;
 
 void showMenu()
 {
@@ -13,7 +17,7 @@ void showMenu()
 
 int main()
 {
-    // Keeper keeper;
+    Keeper keeper;
     while (true)
     {
         showMenu();
@@ -22,46 +26,64 @@ int main()
         std::cin >> choice;
         switch (choice)
         {
-            case 1:
-                int type;
+            case 1:{
+                int instrument;
                 std::cout << "\nEnter instrument type\n"
                              "1. Percussion 2. String 3. Brass:\n";
-                std::cin >> type;
-                switch (type)
+                std::cin >> instrument;
+                switch (instrument)
                 {
-                    case 1:
-                        //Percussion* perc = new Percussion();
-                        //keeper.add(perc);
-                        break;
-                    case 2:
+                    case 1:{
+                        std::string type;
+                        std::string name;
+                        std::string owner;
+                        double cost;
+                        int count;
+                        Percussion* perc;
+                        cout << "Enter percussion type:\n";
+                        cin >> type;
+                        cout << "Enter percussion name:\n";
+                        cin >> name;
+                        cout << "Enter percussion owner:\n";
+                        cin >> owner;
+                        cout << "Enter percussion cost:\n";
+                        cin >> cost;
+                        cout << "Enter percussion count:\n";
+                        cin >> count;
+                        perc = new Percussion(type, name, owner, cost, count);
+                        keeper.add(perc);
+                        break;}
+                    case 2:{
                         //String* str = new String();
                         //keeper.add(str);
-                        break;
-                    case 3:
+                        break;}
+                    case 3:{
                         //Brass* brass = new Brass();
                         //keeper.add(brass);
-                        break;
-                    default:
+                        break;}
+                    default:{
                         std::cout << "Invalid type\n";
+                        break;}
                 }
-                break;
-            case 2:
+                break;}
+            case 2:{
                 //keeper.remove();
-                break;
-            case 3:
-                //keeper.print();
-                break;
-            case 4:
+                break;}
+            case 3:{
+                keeper.print();
+                break;}
+            case 4:{
                 //keeper.save();
-                break;
-            case 5:
+                break;}
+            case 5:{
                 //keeper.load("file.txt");
-                break;
-            case 6:
+                break;}
+            case 6:{
                 std::cout << "Goodbye!\n";
-                return 0;
-            default:
+                return 0;}
+            default:{
                 std::cout << "Invalid choice\n";
+                break;}
         }
     }
 }
