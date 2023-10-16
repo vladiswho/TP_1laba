@@ -5,11 +5,26 @@ Percussion::Percussion(std::string type, std::string name, std::string owner, do
 {
     this->type = type;
     this->name = name;
+    this->owner = owner;
     this->cost = cost;
     this->count = count;
-    this->owner = owner;
 
     std::cout << "Percussion default constructor called\n";
+}
+
+Percussion::Percussion(std::string parameters)
+{
+    this->type = parameters.substr(0, parameters.find(' '));
+    parameters.erase(0, parameters.find(' ') + 1);
+    this->name = parameters.substr(0, parameters.find(' '));
+    parameters.erase(0, parameters.find(' ') + 1);
+    this->owner = parameters.substr(0, parameters.find(' '));
+    parameters.erase(0, parameters.find(' ') + 1);
+    this->cost = stod(parameters.substr(0, parameters.find(' ')));
+    parameters.erase(0, parameters.find(' ') + 1);
+    this->count = stoi(parameters.substr(0, parameters.size()));
+
+    std::cout << "Percussion load-from-file constructor called\n";
 }
 
 Percussion::~Percussion()
@@ -18,22 +33,13 @@ Percussion::~Percussion()
 }
 
 void Percussion::print() {
-    std::cout << "Percussion details: " << std::endl;
-    std::cout << "Type: " << type << std::endl;
-    std::cout << "Name: " << name << std::endl;
-    std::cout << "Owner: " << owner << std::endl;
-    std::cout << "Cost: " << cost << std::endl;
-    std::cout << "Count in orchestra: " << count << std::endl;
+    std::cout << "Percussion instrument: " << "\n";
+    std::cout << type << " " << name << " " << owner << " " << cost << " " << count << "\n";
 }
 
-/*std::string Percussion::getName() {
-    return name;
+std::string Percussion::getParam() {
+    std::string parameters;
+    parameters = "Percussion " + type + " " + name + " " + owner + " " + std::to_string(cost) + " "
+                 + std::to_string(count);
+    return parameters;
 }
-
-void Percussion::save(std::ofstream& file) {
-    file << type << "\n";
-    file << name << "\n";
-    file << cost << "\n";
-    file << count << "\n";
-    file << owner << "\n";
-}*/

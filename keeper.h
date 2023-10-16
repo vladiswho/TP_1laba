@@ -2,6 +2,7 @@
 #define TP_1LABA_KEEPER_H
 
 #include "orchestra.h"
+#include "Exception.h"
 
 class Keeper {
 private:
@@ -12,9 +13,9 @@ public:
     ~Keeper();
     void add(Orchestra* instrument);
     void print();
-    /*void remove(Orchestra* instrument);
+    void remove(int index);
     void save(std::string fileName);
-    void load(std::string fileName);*/
+    void load(std::string fileName);
 };
 
 #endif
